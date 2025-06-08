@@ -19,7 +19,7 @@ document.querySelector(
   ".checkout-header-middle-section"
 ).innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${totalItems} items</a>)`;
 
-let cartSummaryHTML;
+let cartSummaryHTML = ""; // Initialize with empty string
 
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
