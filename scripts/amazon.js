@@ -76,8 +76,12 @@ function updateCartQuantity() {
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
   button.addEventListener("click", (event) => {
     const productId = button.dataset.productId;
+    const quantitySelector = button
+      .closest(".product-container")
+      .querySelector("select");
+    const quantity = parseInt(quantitySelector.value);
 
-    addToCart(productId);
+    addToCart(productId, quantity);
     updateCartQuantity();
   });
 });
