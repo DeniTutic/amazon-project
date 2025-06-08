@@ -2,6 +2,17 @@ import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
+// Calculate total items in cart
+let totalItems = 0;
+cart.forEach((cartItem) => {
+  totalItems += cartItem.quantity;
+});
+
+// Update the header text
+document.querySelector(
+  ".checkout-header-middle-section"
+).innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${totalItems} items</a>)`;
+
 let cartSummaryHTML = "";
 
 cart.forEach((cartItem) => {
@@ -107,7 +118,9 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
   link.addEventListener("click", (event) => {
     const productId = link.dataset.productId;
     removeFromCart(productId);
-    const container = document.querySelector(`.js-cart-item-container-${productId}`);
+    const container = document.querySelector(
+      `.js-cart-item-container-${productId}`
+    );
     container.remove();
   });
 });
