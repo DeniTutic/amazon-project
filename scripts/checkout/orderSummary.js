@@ -2,11 +2,13 @@ import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
+import {
+  deliveryOptions,
+  getDeliveryOption,
+} from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 
 export function renderOrderSummary() {
-    
   // Calculate total items in cart
   let totalItems = 0;
   cart.forEach((cartItem) => {
@@ -28,7 +30,6 @@ export function renderOrderSummary() {
     const deliveryOptionId = cartItem.deliveryOptionId;
 
     const deliveryOption = getDeliveryOption(deliveryOptionId);
-
 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
@@ -128,6 +129,18 @@ export function renderOrderSummary() {
         `.js-cart-item-container-${productId}`
       );
       container.remove();
+
+      // Recalculate total items on header
+      let totalItems = 0;
+      cart.forEach((cartItem) => {
+        totalItems += cartItem.quantity;
+      });
+
+      // Update the header text immediately
+      document.querySelector(
+        ".checkout-header-middle-section"
+      ).innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${totalItems} items</a>)`;
+
       renderPaymentSummary();
     });
   });
@@ -141,5 +154,3 @@ export function renderOrderSummary() {
     });
   });
 }
-
-
