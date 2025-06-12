@@ -2,7 +2,8 @@ import { formatCurrency } from "../../scripts/utils/money.js";
 
 //test suite
 describe("Test suite: formatCurrency", () => {
-  //test name - it
+  //Unit test name - it
+  //Testing one piece of the code
   it("Converts cents into dollars", () => {
     expect(formatCurrency(2095)).toEqual("20.95"); //comparing values
   });
