@@ -5,10 +5,26 @@ import { loadCart } from "../data/cart.js";
 // import "../data/cart-class.js";
 // import "../data/backend-practice.js";
 
+Promise.all([
+  new Promise((resolve) => {
+    loadProducts(() => {
+      resolve("Value1");
+    });
+  }),
+  new Promise((resolve) => {
+    loadCart(() => {
+      resolve();
+    });
+  }),
+]).then((values) => {
+  renderOrderSummary();
+  renderPaymentSummary();
+});
 
+/*
 new Promise((resolve) => {
   loadProducts(() => {
-    resolve('Value1');
+    resolve("Value1");
   });
 })
   .then((value) => {
@@ -24,7 +40,7 @@ new Promise((resolve) => {
     renderOrderSummary();
     renderPaymentSummary();
   });
-
+*/
 /*
   loadProducts(() => {
     loadCart(() => {
