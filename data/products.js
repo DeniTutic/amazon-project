@@ -76,7 +76,7 @@ export function loadProductsFetch() {
     .catch((error) => {
       console.log("Unexpected error. Please try again");
     });
-    return promise;
+  return promise;
 }
 /*
 loadProductsFetch().then(() => {

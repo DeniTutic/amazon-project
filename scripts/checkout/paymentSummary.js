@@ -79,14 +79,13 @@ export function renderPaymentSummary() {
             cart: cart,
           }),
         });
-  
+
         const order = await response.json();
         addOrder(order);
-
       } catch (error) {
-        console.log('Unexpected error. Try again later!');
+        console.log("Unexpected error. Try again later!");
       }
 
-      window.location.href = 'orders.html';
+      window.location.href = "orders.html";
     });
 }
